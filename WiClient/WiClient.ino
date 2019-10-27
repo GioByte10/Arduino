@@ -1,7 +1,7 @@
 #include <ESP8266WiFi.h>
 
-const char * ssid = "ARRIS-BBB2";
-const char * PASS = "F3A015C34864B2BE";
+const char * ssid = "MySpectrumWiFie0-2G";
+const char * PASS = "lightcountry610";
 const int LED = 5;
 
 WiFiServer server(80);
@@ -11,7 +11,7 @@ void setup() {
   pinMode(2, OUTPUT);
   delay(100);
   digitalWrite(2, LOW);
-  Serial.begin(115200);
+  Serial.begin(9600);
 
   WiFi.mode(WIFI_STA);
   WiFi.disconnect();
@@ -64,19 +64,14 @@ void loop() {
 
   int val;
   if (req.indexOf("/off") != -1){
-    val = 0;
+    digitalWrite(2, HIGH);
   }else if (req.indexOf("/on") != -1){
-    val = 1;
-  }else{
-    Serial.println("FAILED REQUEST");
-    client.stop();
-    return;
+    digitalWrite(2, LOW);
   }
-  digitalWrite(2, !val);
+  
   client.flush();
 
   String s = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<!DOCTYPE HTML>\r\n<html>\r\n><body style='background: url(http://fungyung.com/data/out/89/62928653-programming-wallpapers.png)'><p align='right'><font face='calibri' size='2' color='#000000'>By Giovanni Bernal Ramirez</font></p>\n<center><font face='Comic Sans MS' color='teal' size='7'> Cube Inc </font></center></body>";
-  s += (val)?"<font color='#000000'>On</font>":"<font color='#000000'>Off</font>";
   s += "</html>\n";
 
   client.print(s);

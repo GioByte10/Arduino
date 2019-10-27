@@ -7,7 +7,7 @@
 void setup() {
  WiFi.softAPConfig(local_IP, gateway, subnet);
  
- WiFi.softAP("Cube_Inc", "ESP8266100") ? "Ready" : "Failed!" ;
+ WiFi.softAP("Cybicus_Inc", "ESP8266100") ? "Ready" : "Failed!" ;
 
 
 }

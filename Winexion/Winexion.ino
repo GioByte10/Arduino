@@ -1,12 +1,12 @@
 #include <ESP8266WiFi.h>
 
-const char * ssid = "ARRIS-BBB2";
-const char * PASS = "F3A015C34864B2BE";
+const char * ssid = "MySpectrumWiFie0-2G";
+const char * PASS = "lightcountry610";
 const char * host = "www.youtube.com";
 
 void setup() {
 
-  Serial.begin(115200);
+  Serial.begin(9600);
   Serial.print("Connecting");
   WiFi.begin(ssid, PASS);
   
