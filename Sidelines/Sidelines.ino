@@ -1,4 +1,4 @@
-int value;
+double value;
 
 void setup() {
 
@@ -9,8 +9,8 @@ void setup() {
 
 void loop() {
 
-   value = analogRead(A0) * 0.24;
+   value = analogRead(A0) * 0.0634;
    Serial.println(value);
-   analogWrite(10, value);
-
+   analogWrite(10, value + 190);
+    
 }

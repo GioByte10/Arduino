@@ -1,10 +1,13 @@
 #include <ESP8266WiFi.h>
+
 #include <Servo.h>
 
 Servo telegraph;
 
-const char * ssid = "MySpectrumWiFie0-2G";
-const char * PASS = "lightcountry610";
+#define FIREBASE_HOST "https://telegraph-nodemcu-3d234.firebaseio.com/"
+#define FIREBASE_AUTH "z1PggWxDoYPl2X9o0wVkTKmAMagLW7qduL4JReOV"
+#define WIFI_SSID "MySpectrumWiFie0-2G"
+#define WIFI_PASSWORD "lightcountry610"
 
 WiFiServer server(80);
 
@@ -29,7 +32,7 @@ void setup() {
    Serial.print("Connecting to ");
    Serial.println(ssid);
  
-   WiFi.begin(ssid, PASS);
+   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
  
    while (WiFi.status() != WL_CONNECTED) {
      delay(500);
