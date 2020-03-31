@@ -1,7 +1,7 @@
   const int LED = 13;
   const int Btooth = 12;
 
-  char BtoothName[11] = "MasterSlave10";
+  char BtoothName[11] = "MasterSlave1";
   char pin[5] = "3510";
   char sp = '4';
   char mode = '0';

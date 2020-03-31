@@ -20,11 +20,9 @@
 void setup() {                                       
   pinMode (LED, OUTPUT);           //Declare Output
   
- Serial.begin(9600);               //Declare the monitor
+ Serial.begin(38400);              //Declare the monitor
 
- while (!Serial){                  //For Leonard's
-  ;
- }
+
  Bluetooth.begin(38400);            //Bluetooth modules are configured at this speed
 
 

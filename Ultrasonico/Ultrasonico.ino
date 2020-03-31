@@ -12,6 +12,7 @@ void setup() {
 }
 
 void loop() {
+  
   digitalWrite (Trig, LOW);
   delayMicroseconds(5);
   digitalWrite (Trig, HIGH);
@@ -21,10 +22,16 @@ void loop() {
    duracion = duracion / 2;
    distancia = 0.034 * duracion;
 
+   if(distancia >= 500 || distancia <= 0){
+
+      Serial.println("---");
+    
+   }else{
+
    Serial.print("Distancia ");
    Serial.print(distancia);
    Serial.println(" Cm");
    
-
+   }
 
 }

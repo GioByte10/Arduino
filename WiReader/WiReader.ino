@@ -2,8 +2,8 @@
 
 int lx;
 
-const char * ssid = "ARRIS-BBB2";
-const char * PASS = "F3A015C34864B2BE";
+const char * ssid = "";
+const char * PASS = "";
 const int LED = 5;
 
 WiFiServer server(80);
