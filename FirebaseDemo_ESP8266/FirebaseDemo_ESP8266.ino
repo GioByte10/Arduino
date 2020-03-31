@@ -2,10 +2,10 @@
 #include <ESP8266WiFi.h>
 #include <FirebaseArduino.h>
 
-#define FIREBASE_HOST "https://telegraph-nodemcu-3d234.firebaseio.com/"
-#define FIREBASE_AUTH "z1PggWxDoYPl2X9o0wVkTKmAMagLW7qduL4JReOV"
-#define WIFI_SSID "MySpectrumWiFie0-2G"
-#define WIFI_PASSWORD "lightcountry610"
+#define FIREBASE_HOST ""
+#define FIREBASE_AUTH ""
+#define WIFI_SSID ""
+#define WIFI_PASSWORD ""
 
 WiFiServer server(80);
 

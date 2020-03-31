@@ -1,7 +1,7 @@
 #include <ESP8266WiFi.h>
 
-const char * ssid = "MySpectrumWiFie0-2G";
-const char * PASS = "lightcountry610";
+const char * ssid = "";
+const char * PASS = "";
 const char * host = "www.youtube.com";
 
 void setup() {
