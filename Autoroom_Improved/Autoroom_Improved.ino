@@ -13,6 +13,8 @@ bool nightLock = false;
 
 void setup() {
 
+  Serial.begin(9600);
+
   pinMode(motion_1, INPUT);
   pinMode(motion_2, INPUT);
   pinMode(6, INPUT);
@@ -20,8 +22,10 @@ void setup() {
   pinMode(light, OUTPUT);
   pinMode(desktop_light, OUTPUT);
   pinMode(7, OUTPUT);
+  pinMode(13, OUTPUT);
+  digitalWrite(13, LOW);
   digitalWrite(7, HIGH);
-
+  
 }
 
 void turnOff(){
@@ -55,6 +59,8 @@ void loop() {
     if(digitalRead(motion_1) == HIGH){
       if(digitalRead(motion_2) == HIGH){
 
+        Serial.println("This should not be printing 1");
+
         people--;
         if(people == 0){
           turnOff();
@@ -65,6 +71,8 @@ void loop() {
     }else if(digitalRead(motion_2) == HIGH){
       if(digitalRead(motion_1)){
 
+        Serial.println("This should not be printing 2");
+
         people++;
         turnOn();
         
@@ -72,8 +80,17 @@ void loop() {
     }
   }
 
-  if(digitalRead(6) == HIGH){
+  if(digitalRead(6) == HIGH && !night){
     night = true;
+
+    for(int i = 0; i < 4; i++){
+      digitalWrite(13, HIGH);
+      delay(500);
+      digitalWrite(13, LOW);
+      delay(500);
+      Serial.println(i);
+    }
+    
   }
 
 
