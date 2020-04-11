@@ -1,12 +1,13 @@
-#define fan 2
-#define light 3
-#define desktop_light 4
+#define fan 0
+#define light 2
+#define desktop_light 3
 #define motion_1 8
-#define motion_2 9
+#define motion_2 10
 
 //int mode = 0;                        // 1 = In the room     2 = Not in the room     3 = Night
 int people = 1;
 int once = 0;
+int motionCou = 0;
 int start = 0;
 bool night = false;
 bool nightLock = false;
@@ -17,18 +18,38 @@ void setup() {
 
   pinMode(motion_1, INPUT);
   pinMode(motion_2, INPUT);
-  pinMode(6, INPUT);
+  pinMode(6, INPUT);          // Night INPUT
+  
   pinMode(fan, OUTPUT);
   pinMode(light, OUTPUT);
   pinMode(desktop_light, OUTPUT);
+  pinMode(5, OUTPUT);
   pinMode(7, OUTPUT);
   pinMode(13, OUTPUT);
-  digitalWrite(13, LOW);
-  digitalWrite(7, HIGH);
+  pinMode(9, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(4, OUTPUT);
+  pinMode(12, OUTPUT);
+
+  digitalWrite(13, LOW);      // Built-in LED
+  
+  digitalWrite(4, LOW);       // Desktop Light LOW
+  digitalWrite(5, LOW);       // Night LOW
+  
+  digitalWrite(7, HIGH);      // Night HIGH
+  digitalWrite(9, HIGH);      // Motion_1 HIGH
+  digitalWrite(11, HIGH);     // Motion_2 HIGH
+  digitalWrite(12, HIGH);     // Desktop Light HIGH
+
+  turnOn();
+    delay(90000);
+  Serial.println("Ready...");
   
 }
 
 void turnOff(){
+
+  Serial.println("Turning Off");
 
   digitalWrite(fan, LOW);
   digitalWrite(light, LOW);
@@ -38,6 +59,8 @@ void turnOff(){
 
 void turnOn(){
 
+  Serial.println("Turning On");
+
   digitalWrite(fan, HIGH);
   digitalWrite(light, HIGH);
   digitalWrite(desktop_light, HIGH);
@@ -45,6 +68,8 @@ void turnOn(){
 }
 
 void turnNight(){
+
+  Serial.println("Turning Night");
 
   digitalWrite(fan, HIGH);
   digitalWrite(light, LOW);
@@ -56,38 +81,60 @@ void loop() {
 
   if(!nightLock){
 
-    if(digitalRead(motion_1) == HIGH){
-      if(digitalRead(motion_2) == HIGH){
-
-        Serial.println("This should not be printing 1");
-
-        people--;
-        if(people == 0){
-          turnOff();
-        }
-      
-     }
-    
-    }else if(digitalRead(motion_2) == HIGH){
-      if(digitalRead(motion_1)){
-
-        Serial.println("This should not be printing 2");
-
-        people++;
-        turnOn();
+    while(digitalRead(motion_1)){
+      while(digitalRead(motion_2)){
         
-      }   
+        digitalWrite(13, HIGH);
+
+        if(motionCou == 0){
+
+          Serial.println("Getting Out");
+          
+          if(people != 0 && !(people < 0)){
+            people--;
+          }
+        
+          if(people == 0){
+            turnOff();
+          }
+          
+          motionCou++;
+        }
+      }
+      
+    motionCou = 0;
+    digitalWrite(13, LOW);
+    
+    }while(digitalRead(motion_2)){
+      while(digitalRead(motion_1)){
+        
+        digitalWrite(13, HIGH);
+        
+        if(motionCou == 0){        
+
+          Serial.println("Getting In");
+
+          people++;
+          turnOn();
+          motionCou++;
+        
+        }   
+      }
     }
+    motionCou = 0;
+    digitalWrite(13, LOW);
   }
 
-  if(digitalRead(6) == HIGH && !night){
+  
+
+  if(digitalRead(6) && !night){
     night = true;
 
-    for(int i = 0; i < 4; i++){
+    for(int i = 0; i < 6; i++){
       digitalWrite(13, HIGH);
-      delay(500);
+      delay(300);
       digitalWrite(13, LOW);
-      delay(500);
+      delay(300);
       Serial.println(i);
     }
     
@@ -107,13 +154,13 @@ void loop() {
 
     while(nightLock){
 
-      if(digitalRead(motion_2) == HIGH){
+      if(digitalRead(motion_2)){
         turnOn();
         delay(5000);
         turnNight();
        }
 
-      if(digitalRead(6) == LOW){
+      if(!digitalRead(6)){
         night = false;
         nightLock = false;
         turnOn();
