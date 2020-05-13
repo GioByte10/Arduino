@@ -1,3 +1,3 @@
 # Arduino
-Here you can see al my Arduino projects // Aqui pueden ver todos mis codigos de Arduino
-"# Arduino" 
+Here you can see all my Arduino projects // Aqui podran ver todos mis proyectos de Arduino
+
