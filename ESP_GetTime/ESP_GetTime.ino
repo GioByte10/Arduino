@@ -1,13 +1,16 @@
 #include <ESP8266WiFi.h>
 #include <time.h>
 
-const char* ssid = "<SSID>";
-const char* password = "<password>";
+const char* ssid = "ARRIS-BBB2";
+const char* password = "F3A015C34864B2BE";
 
 int ledPin = 2;
 
 int timezone = 6 * 3600;
 int dst = 0;
+
+int hour, minute, second;
+int elapsed;
 
 void setup() {
   
@@ -51,19 +54,14 @@ void loop() {
   
   time_t now = time(nullptr);
   struct tm* p_tm = localtime(&now);
-  Serial.print(p_tm->tm_mday);
-  Serial.print("/");
-  Serial.print(p_tm->tm_mon + 1);
-  Serial.print("/");
-  Serial.print(p_tm->tm_year + 1900);
-  
-  Serial.print(" ");
-  
-  Serial.print(p_tm->tm_hour);
-  Serial.print(":");
-  Serial.print(p_tm->tm_min);
-  Serial.print(":");
-  Serial.println(p_tm->tm_sec);
+
+  hour = p_tm->tm_hour;
+  minute = p_tm->tm_min;
+  second = p_tm->tm_sec;
+
+  elapsed = hour * 3600 + minute * 60 + second;
+
+  Serial.println(elapsed);
   
   delay(1000);
 
