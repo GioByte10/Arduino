@@ -1,8 +1,8 @@
 #include <ESP8266WiFi.h>
 #include <time.h>
 
-const char* ssid = "ARRIS-BBB2";
-const char* password = "F3A015C34864B2BE";
+const char* ssid = "SSID";
+const char* password = "password";
 
 int ledPin = 2;
 
@@ -14,8 +14,11 @@ int elapsed;
 
 void setup() {
   
-  pinMode(ledPin,OUTPUT);
-  digitalWrite(ledPin,LOW);
+  pinMode(ledPin, OUTPUT);
+  digitalWrite(ledPin, HIGH);
+
+  pinMode(4, OUTPUT);
+  digitalWrite(4, HIGH);
 
   Serial.begin(115200);
   Serial.println();
@@ -60,6 +63,12 @@ void loop() {
   second = p_tm->tm_sec;
 
   elapsed = hour * 3600 + minute * 60 + second;
+
+  if(elapsed > 25200)
+    digitalWrite(4, HIGH);
+
+  else
+    digitalWrite(4, LOW);
 
   Serial.println(elapsed);
   
