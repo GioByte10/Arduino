@@ -1,8 +1,8 @@
 #include <ESP8266WiFi.h>
 #include <time.h>
 
-const char* ssid = "SSID";
-const char* password = "password";
+const char* ssid = "ARRIS-BBB2";
+const char* password = "F3A015C34864B2BE";
 
 int ledPin = 2;
 
@@ -64,7 +64,7 @@ void loop() {
 
   elapsed = hour * 3600 + minute * 60 + second;
 
-  if(elapsed > 25200)
+  if(elapsed > 21600)
     digitalWrite(4, HIGH);
 
   else
