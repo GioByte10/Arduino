@@ -1,8 +1,8 @@
 #include <ESP8266WiFi.h>
 #include <time.h>
 
-const char* ssid = "ARRIS-BBB2";
-const char* password = "F3A015C34864B2BE";
+const char* ssid = "";
+const char* password = "";
 
 int ledPin = 2;
 
