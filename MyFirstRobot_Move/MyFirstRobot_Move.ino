@@ -2,13 +2,17 @@
 
 Servo robot;
 
+int degToServo = 0;
+
 void setup() {
-   robot.attach(9); 
+   robot.attach(6); 
 }
 
 void loop() {
 
-  robot.write(180);
+ degToServo = 90 / 1.2;
+
+  robot.write(degToServo);
 
 
 }
