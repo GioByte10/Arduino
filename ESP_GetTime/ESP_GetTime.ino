@@ -64,7 +64,7 @@ void loop() {
 
   elapsed = hour * 3600 + minute * 60 + second;
 
-  if(elapsed > 21600)
+  if(elapsed > 25000)
     digitalWrite(4, HIGH);
 
   else
