@@ -1,12 +1,12 @@
 #include <ESP8266WiFi.h>
 #include <time.h>
 
-const char* ssid = "";
-const char* password = "";
+const char* ssid = "ARRIS-BBB2";
+const char* password = "F3A015C34864B2BE";
 
 int ledPin = 2;
 
-int timezone = 6 * 3600;
+int timezone = -6 * 3600;
 int dst = 0;
 
 int hour, minute, second;
@@ -62,9 +62,15 @@ void loop() {
   minute = p_tm->tm_min;
   second = p_tm->tm_sec;
 
+  Serial.print(hour);
+  Serial.print(" ");
+  Serial.print(minute);
+  Serial.print(" ");
+  Serial.println(second);
+
   elapsed = hour * 3600 + minute * 60 + second;
 
-  if(elapsed > 25000)
+  if(elapsed > 21600)
     digitalWrite(4, HIGH);
 
   else
