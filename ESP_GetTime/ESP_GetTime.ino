@@ -6,7 +6,7 @@ const char* password = "F3A015C34864B2BE";
 
 int ledPin = 2;
 
-int timezone = -6 * 3600;
+int timezone = -7 * 3600;
 int dst = 0;
 
 int hour, minute, second;
