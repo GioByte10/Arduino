@@ -1,3 +1,9 @@
+// Noto que Google forms deja todo el texto en una sola linea
+// asi que si tiene problemas leyendo el codigo
+// adjunto aqui el link a mi repositorio de GitHub
+// donde puede encontrar el codigo
+// https://github.com/GioByte10/Arduino/blob/master/ARACT/Test/LDR/LDR.ino
+
 // El primer error se encuentra en la linea 6 del codigo original
 // ya que hace falta un ; despues del pinMode
 
